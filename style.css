@@ -1,0 +1,1037 @@
+/*
+Theme Name:  PowerOn Resume
+Theme URI:   https://mohder.ir/
+Author:      Mohammad Deris
+Author URI:  https://mohder.ir/
+Description: A personal and interactive resume theme designed to showcase skills, experience, and projects. Based on the portfolio of Mohammad Deris.
+Version:     1.0.0
+License:     GNU General Public License v2.0 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: resume
+Tags:        resume, portfolio, personal, one-column, custom-background, custom-logo, interactive
+*/
+
+
+/* Universal box-sizing for consistent element sizing across all elements. */
+* {
+    box-sizing: border-box;
+}
+
+/* Base body styles, including background, minimum height, flex layout for centering,
+   and font family. Transition for background color change on theme activation. */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #2c2c2c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.4s ease;
+    font-family: "Vazirmatn", sans-serif;
+}
+
+/* Styles for the 'off' state of the body, setting text color. */
+body.off, body:not(.on) {
+    color: #f0f0f0;
+}
+
+/* Styles for the initial activation message displayed when the theme is off. */
+#activate-message {
+    color: #f0f0f0;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+    transition: color 0.4s ease;
+}
+
+/* Hides the activation message when the theme is in the 'on' state. */
+.on #activate-message {
+    display: none;
+}
+
+/* Styles for the interactive switch image. */
+#switch-img {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+/* Hover effect for the switch image, providing a slight scale transformation. */
+#switch-img:hover {
+    transform: scale(1.05);
+}
+
+/* General H1 tag styles, excluding the H1 within the personal info section. */
+body h1:not(.personal-info-section h1) {
+    color: #f0f0f0;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+    transition: color 0.4s ease;
+}
+
+/* Changes the color of general H1 tags when the theme is 'on'. */
+.on body h1:not(.personal-info-section h1) {
+    color: #333;
+}
+
+/* Styles for the main content container, initially hidden and animating in. */
+#message {
+    display: none; /* Hidden by default */
+    margin: 30px auto;
+    padding: 30px 40px;
+    max-width: 900px;
+    width: 90%;
+    font-size: 17px;
+    background: #f9f9f9;
+    color: #333;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    line-height: 1.9;
+    direction: rtl; /* Right-to-left text direction for Persian content. */
+    text-align: justify;
+    opacity: 0; /* Starts transparent for fade-in effect. */
+    transform: translateY(20px); /* Starts slightly below its final position. */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Displays and animates the message container when the theme is 'on'. */
+.on #message {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Background color for the body when the theme is in the 'on' state. */
+.on {
+    background-color: #ffffff;
+}
+
+/* Specific background color for a flicker effect in the 'off' state. */
+.off-flicker {
+    background-color: #2c2c2c !important;
+}
+
+/* Styles for H3 and H4 headings within the main message container. */
+#message h3, #message h4 {
+    margin-top: 35px;
+    margin-bottom: 15px;
+    color: #222;
+    text-align: right;
+}
+
+/* Base styles for unordered lists. */
+ul {
+    margin: 0;
+    padding-right: 20px; /* Adjust padding for Right-to-Left (RTL) layout. */
+    list-style-type: disc;
+}
+
+/* Styles for list items. */
+li {
+    margin-bottom: 8px;
+}
+
+/* Grid layout for skill sections, allowing responsive column adjustments. */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Styles for individual skill boxes, including background, padding, and shadow. */
+.skill-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles for H4 headings within skill boxes. */
+.skill-box h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 19px;
+    text-align: center;
+}
+
+/* List specific styles for skill boxes. */
+.skill-box ul {
+    list-style: disc;
+    padding-right: 25px; /* Adjust padding for RTL. */
+}
+/* List item specific styles for skill boxes. */
+.skill-box li {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Styles for individual company experience blocks. */
+.company {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 25px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for company blocks, providing a subtle lift and shadow. */
+.company:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Styles for company logos within the company block. */
+.company img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-left: 20px; /* Margin for RTL layout. */
+    flex-shrink: 0;
+    object-fit: contain;
+    background-color: #f0f0f0;
+    padding: 5px;
+}
+
+/* Flex-grow for the div containing company text details. */
+.company > div {
+    flex-grow: 1;
+}
+
+/* Styles for H3 headings (job titles) within company blocks. */
+.company h3 {
+    margin: 0 0 5px 0;
+    font-size: 21px;
+    color: #333;
+    text-align: right;
+}
+
+/* Styles for paragraphs (company name, period, location) within company blocks. */
+.company p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 16px;
+    text-align: right;
+}
+
+/* List styles for tasks within company blocks. */
+.company ul {
+    margin-top: 10px;
+    padding-right: 25px; /* Adjust padding for RTL. */
+    list-style: disc;
+}
+/* List item styles for tasks within company blocks. */
+.company li {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Styles for the lightbox overlay, initially hidden. */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Active state for the lightbox overlay, making it visible. */
+.lightbox-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Styles for the lightbox content container. */
+.lightbox-content {
+    position: relative;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    max-width: 85%;
+    max-height: 85%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.9); /* Starts slightly smaller for animation. */
+    transition: transform 0.3s ease-out;
+}
+
+/* Animation for the lightbox content when active. */
+.lightbox-overlay.active .lightbox-content {
+    transform: scale(1);
+}
+
+/* Styles for images displayed inside the lightbox. */
+.lightbox-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+/* Styles for the title displayed within the lightbox. */
+.lightbox-title {
+    color: #333;
+    font-size: 1.3em;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Styles for the close button of the lightbox. */
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    left: 15px; /* Positioned on the left, standard for close buttons. */
+    background: none;
+    border: none;
+    font-size: 2.2em;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for the lightbox close button. */
+.lightbox-close:hover {
+    color: #000;
+    transform: scale(1.1);
+}
+
+/* Grid layout for displaying certification items. */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+/* Styles for individual certification items. */
+.certification-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for certification items. */
+.certification-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Styles for images within certification items. */
+.certification-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+/* Hover effect for certification images. */
+.certification-item img:hover {
+    transform: scale(1.03);
+}
+
+/* Styles for paragraph text (certification titles) within certification items. */
+.certification-item p {
+    margin-top: 15px;
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Styles for the site footer, initially hidden. */
+.site-footer {
+    width: 100%;
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+    padding: 40px 20px;
+    margin-top: 60px;
+    text-align: center;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Displays and changes background/text color of footer when theme is 'on'. */
+.on .site-footer {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+}
+
+/* Wrapper for content within the footer to control max-width and layout. */
+.footer-content {
+    max-width: 960px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+}
+
+/* Styles for H3 headings within the footer. */
+.site-footer h3 {
+    color: #f0f0f0;
+    margin-bottom: 25px;
+    font-size: 26px;
+    transition: color 0.4s ease;
+}
+
+/* Changes H3 color in footer when theme is 'on'. */
+.on .site-footer h3 {
+    color: #333;
+}
+
+/* Styles for paragraph text within the footer. */
+.site-footer p {
+    margin: 5px 0;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* Styles for links within the footer. */
+.site-footer a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+/* Changes link color in footer when theme is 'on'. */
+.on .site-footer a {
+    color: #00bcd4;
+}
+
+/* Hover effect for footer links. */
+.site-footer a:hover {
+    color: #00bcd4;
+}
+
+/* Styles for contact information section within the footer. */
+.contact-info p {
+    direction: ltr; /* Ensures Left-to-Right direction for contact details like email/phone. */
+    text-align: center;
+}
+/* Bold text for strong tags in contact info. */
+.contact-info strong {
+    font-weight: bold;
+}
+
+/* Styles for the section displaying industrial blog posts. */
+.industrial-blog-posts {
+    background-color: #444;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    width: 100%;
+    max-width: 850px;
+    box-sizing: border-box;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Changes background and shadow of blog posts section when theme is 'on'. */
+.on .industrial-blog-posts {
+    background-color: #fff;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* Styles for H3 heading within the industrial blog posts section. */
+.industrial-blog-posts h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #f0f0f0;
+    text-align: center;
+    font-size: 24px;
+    transition: color 0.4s ease;
+}
+
+/* Changes H3 color in blog posts section when theme is 'on'. */
+.on .industrial-blog-posts h3 {
+    color: #333;
+}
+
+/* Grid layout for individual blog posts. */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    justify-content: center;
+}
+
+/* Styles for individual industrial blog post items. */
+.industrial-post-item {
+    background-color: #555;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Changes background and shadow of individual post items when theme is 'on'. */
+.on .industrial-post-item {
+    background-color: #eee;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Hover effect for industrial post items. */
+.industrial-post-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+}
+
+/* Styles for links covering the entire industrial post item. */
+.industrial-post-item a {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+}
+
+/* Styles for images within industrial post items. */
+.industrial-post-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #666;
+    transition: border-color 0.4s ease;
+}
+
+/* Changes image border color in post items when theme is 'on'. */
+.on .industrial-post-item img {
+    border-bottom: 1px solid #ccc;
+}
+
+/* Styles for H4 headings (post titles) within industrial post items. */
+.industrial-post-item h4 {
+    margin: 18px;
+    font-size: 19px;
+    color: #f0f0f0;
+    text-align: center;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits text to two lines. */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.4s ease;
+    font-weight: 600;
+}
+
+/* Changes H4 color in post items when theme is 'on'. */
+.on .industrial-post-item h4 {
+    color: #333;
+}
+
+/* Wrapper for the "Load More" button to ensure centering. */
+.load-more-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+/* Styles for the "Load More" button. */
+.load-more-button {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 17px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: fit-content;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Hover effect for the "Load More" button. */
+.load-more-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Styles for the disabled state of the "Load More" button. */
+.load-more-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Styles for the "No more posts" message. */
+#no-more-posts-message {
+    margin-top: 25px;
+    font-size: 1.15em;
+    color: #bbb;
+    text-align: center;
+}
+
+/* Styles for the social media links container. */
+.social-links {
+    display: flex;
+    margin-top: 25px;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Styles for social media icons/images. */
+.social-links a img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: rgba(255,255,255,0.1);
+    padding: 5px;
+}
+
+/* Changes social icon background when theme is 'on'. */
+.on .social-links a img {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Hover effect for social media icons. */
+.social-links a img:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Styles for the blog button in the site footer. */
+.site-footer #blog-button {
+    display: block;
+    margin: 30px auto 10px auto;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #2c2c2c;
+    color: white;
+    border: 2px solid #2c2c2c;
+    border-radius: 8px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+/* Hover effect for the blog button. */
+.site-footer #blog-button:hover {
+    background-color: #008fa7;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+    border-color: #008fa7;
+}
+
+/*--------------------------------------------------------------
+# Personal Info Section
+--------------------------------------------------------------*/
+/* Styles for the personal information section, initially hidden. */
+.personal-info-section {
+    width: 100%;
+    max-width: 900px;
+    background-color: #444;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    margin-top: 50px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Displays and changes background/shadow of personal info section when theme is 'on'. */
+.on .personal-info-section {
+    display: flex;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Styles for the profile header, arranging image and text. */
+.profile-header {
+    display: flex;
+    flex-direction: row-reverse; /* For RTL layout: image on left, text on right. */
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+/* Styles for the circular profile image. */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 20px; /* Margin for RTL layout. */
+    flex-basis: 150px;
+}
+
+/* Styles for the text container next to the profile image. */
+.profile-text-top {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    text-align: right;
+    max-width: calc(100% - 150px - 10px);
+}
+
+/* Styles for the main H1 heading (name) in the personal info section. */
+.personal-info-section h1 {
+    color: #f0f0f0;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 36px;
+    transition: color 0.4s ease;
+    text-align: right;
+}
+
+/* Changes H1 color in personal info section when theme is 'on'. */
+.on .personal-info-section h1 {
+    color: #333;
+}
+
+/* Styles for the job title in the personal info section. */
+.personal-info-section .job-title {
+    color: #a0a0a0;
+    font-size: 19px;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: color 0.4s ease;
+    text-align: right;
+    font-weight: 500;
+}
+
+/* Changes job title color in personal info section when theme is 'on'. */
+.on .personal-info-section .job-title {
+    color: #555;
+}
+
+/* Styles for the short biography container. */
+.short-bio {
+    width: 100%;
+    text-align: justify;
+    margin-top: 5px;
+}
+
+/* Styles for paragraph text within the short biography. */
+.short-bio p {
+    color: #e0e0e0;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-top: -30px;
+    margin-bottom: 0;
+    transition: color 0.4s ease;
+}
+
+/* Changes short bio paragraph color in personal info section when theme is 'on'. */
+.on .personal-info-section .short-bio p {
+    color: #444;
+}
+
+/* Changes section title color when theme is 'on'. */
+.on .section-title {
+    color: #333;
+}
+
+/*--------------------------------------------------------------
+# Category & Blog Posts
+--------------------------------------------------------------*/
+/* Wrapper for category and blog post content. */
+.category-content-wrap {
+    max-width: 960px;
+    width: 90%;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    margin-top: 40px;
+    margin-bottom: 60px;
+    box-sizing: border-box;
+}
+
+/* Styles for main page titles (e.g., category titles). */
+h1.page-title {
+    color: #2c2c2c;
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 36px;
+    border-bottom: 3px solid #00bcd4;
+    padding-bottom: 15px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+}
+
+/* Styles for individual blog post items in category/archive pages. */
+.post-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover effect for blog post items. */
+.post-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Styles for links covering the entire blog post item. */
+.post-item a {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+}
+
+/* Styles for images within blog post items. */
+.post-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+/* Styles for H2 headings (post titles) within blog post items. */
+.post-item h2 {
+    font-size: 22px;
+    margin: 18px;
+    color: #333;
+    text-align: center;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits text to two lines. */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+}
+
+/* Styles for the excerpt (short description) within blog post items. */
+.post-item .excerpt {
+    font-size: 16px;
+    color: #555;
+    padding: 0 18px 20px;
+    line-height: 1.7;
+    text-align: justify;
+    flex-grow: 1;
+}
+
+/* Styles for the "Back to Home" link. */
+.back-to-home {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 19px;
+    text-align: center;
+}
+/* Styles for the anchor tag of "Back to Home" link. */
+.back-to-home a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+/* Hover effect for the "Back to Home" link. */
+.back-to-home a:hover {
+    color: #0056b3;
+}
+
+
+/*--------------------------------------------------------------
+# Responsive Adjustments
+--------------------------------------------------------------*/
+/* Media query for screens up to 900px width. */
+@media (max-width: 900px) {
+    #message, .personal-info-section, .category-content-wrap {
+        padding: 25px 30px;
+    }
+}
+
+/* Media query for screens up to 768px width (tablets). */
+@media (max-width: 768px) {
+    body { font-size: 16px; }
+    h1 { font-size: 26px; }
+    #message { font-size: 16px; line-height: 1.8; }
+    #message h3, #message h4 { font-size: 20px; }
+    .personal-info-section { padding: 25px; }
+
+    .profile-header {
+        flex-direction: column; /* Stacks image and text vertically. */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .profile-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-text-top {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .personal-info-section h1,
+    .personal-info-section .job-title {
+        text-align: center;
+    }
+
+    .short-bio p {
+        text-align: justify;
+        font-size: 16px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr; /* Single column layout. */
+        gap: 20px;
+    }
+    .skill-box { padding: 18px; }
+    .skill-box h4 { font-size: 18px; }
+    .skill-box li { font-size: 15px; }
+
+    .company {
+        flex-direction: column; /* Stacks logo and text vertically. */
+        align-items: center;
+        text-align: center;
+        padding: 18px;
+    }
+    .company img { margin-left: 0; margin-bottom: 15px; }
+    .company h3, .company p, .company ul { text-align: center; }
+    .company ul { padding-right: 0; list-style-position: inside; } /* Adjusts list style for RTL. */
+    .company li { font-size: 15px; line-height: 1.6; }
+
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    .certification-item { padding: 15px; }
+    .certification-item p { font-size: 0.9em; }
+
+    .site-footer { padding: 30px 20px; }
+    .site-footer h3 { font-size: 22px; }
+    .site-footer p { font-size: 16px; }
+
+    .industrial-blog-posts { padding: 25px; }
+    .industrial-blog-posts h3 { font-size: 20px; }
+    .posts-grid { grid-template-columns: 1fr; gap: 20px; } /* Single column layout. */
+    .industrial-post-item { padding-bottom: 10px; }
+    .industrial-post-item img { height: 160px; }
+    .industrial-post-item h4 { font-size: 17px; margin: 15px; }
+
+    .load-more-button { padding: 12px 25px; font-size: 16px; }
+
+    .social-links { gap: 20px; }
+    .social-links a img { width: 40px; height: 40px; }
+    .site-footer #blog-button { padding: 12px 25px; font-size: 17px; }
+
+    h1.page-title { font-size: 30px; padding-bottom: 10px; }
+    .post-item h2 { font-size: 19px; }
+    .post-item img { height: 180px; }
+    .post-item .excerpt { font-size: 14px; padding: 0 12px 15px; }
+    .back-to-home { font-size: 17px; }
+}
+
+/* Media query for screens up to 480px width (mobile phones). */
+@media (max-width: 480px) {
+    #activate-message { font-size: 18px; margin-top: 30px; }
+    #switch-img { height: 80px; }
+    #message { padding: 20px 25px; font-size: 15px; margin: 20px auto; }
+    #message h3, #message h4 { margin-top: 30px; font-size: 18px; }
+
+    .personal-info-section { padding: 20px; }
+    .personal-info-section h1 { font-size: 28px; }
+    .personal-info-section .job-title { font-size: 16px; }
+    .short-bio p { font-size: 15px; }
+    .section-title { font-size: 20px; margin-top: 35px; }
+
+    .skill-box { padding: 15px; }
+    .skill-box h4 { font-size: 17px; }
+    .skill-box li { font-size: 14px; }
+
+    .company { padding: 15px; }
+    .company img { width: 50px; height: 50px; margin-bottom: 10px; }
+    .company h3 { font-size: 19px; }
+    .company p { font-size: 14px; }
+    .company li { font-size: 14px; }
+
+    .certifications-grid { grid-template-columns: 1fr; gap: 15px; } /* Single column layout. */
+    .certification-item { padding: 12px; }
+    .certification-item p { font-size: 0.85em; }
+
+    .site-footer { padding: 25px 15px; }
+    .site-footer h3 { font-size: 20px; }
+    .site-footer p { font-size: 15px; }
+
+    .industrial-blog-posts { padding: 20px; }
+    .industrial-blog-posts h3 { font-size: 18px; }
+    .industrial-post-item img { height: 140px; }
+    .industrial-post-item h4 { font-size: 16px; margin: 12px; }
+
+    .load-more-button { padding: 10px 20px; font-size: 15px; }
+    .social-links { gap: 15px; }
+    .social-links a img { width: 35px; height: 35px; }
+    .site-footer #blog-button { padding: 10px 20px; font-size: 16px; }
+
+    h1.page-title { font-size: 26px; margin-bottom: 25px; }
+    .post-item h2 { font-size: 18px; margin: 12px; }
+    .post-item img { height: 160px; }
+    .post-item .excerpt { font-size: 14px; padding: 0 12px 15px; }
+    .back-to-home { font-size: 16px; }
+}

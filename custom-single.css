@@ -1,0 +1,145 @@
+/*
+ * Custom styles for single post template
+ *
+ * @package PowerOn
+ * @author Mohammad Deris
+ * @version 1.0.0
+ * @license GNU General Public License v2.0 or later
+ * This theme is open for anyone to use without restriction.
+ */
+
+/* Adjust content alignment for single posts to start from the top */
+.content {
+    justify-content: flex-start; /* Content starts from the top */
+}
+
+/* Main container for single post content */
+.post-content-entry {
+    display: block;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    width: 100%;
+    max-width: 800px; /* Max width for readability */
+    text-align: right; /* Align text to the right for RTL */
+    padding-top: 120px; /* Space for fixed header elements */
+}
+
+/* Styles for headings within post content */
+.post-content-entry h2,
+.post-content-entry h3,
+.post-content-entry h4,
+.post-content-entry h5,
+.post-content-entry h6 {
+    color: var(--accent-primary);
+    border-bottom: 2px solid var(--accent-secondary);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: inline-block; /* Ensures border only covers text width */
+}
+
+/* Paragraph spacing */
+.post-content-entry p {
+    margin-bottom: 1.5em;
+}
+
+/* Link styling within post content */
+.post-content-entry a {
+    color: var(--accent-primary);
+    text-decoration: none;
+}
+
+/* Link hover effect */
+.post-content-entry a:hover {
+    text-decoration: underline;
+    color: var(--accent-secondary);
+}
+
+/* Styles for the main post thumbnail image */
+.post-content-entry img.post-thumbnail-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    margin: 0 auto 25px; /* Center and add bottom margin */
+    box-shadow: 0 0 20px var(--shadow-color-accent);
+    display: block;
+    border: 3px solid var(--accent-primary);
+    background-color: var(--bg-secondary);
+}
+
+/* Styles for images embedded within the post's actual content (e.g., from editor) */
+.post-content-entry .post-actual-content img {
+    max-width: 100% !important; /* Ensure images don't overflow container */
+    height: auto !important;
+    display: block;
+    border-radius: 8px;
+    margin: 10px auto; /* Center embedded images */
+    background-color: transparent;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+/* FooGallery specific overrides for integration */
+.post-content-entry .foogallery {
+    display: block;
+    width: 100%;
+    overflow: visible;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Styles for individual gallery items within FooGallery */
+.post-content-entry .foogallery .fg-item,
+.post-content-entry .foogallery .fg-thumb {
+    border: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    margin: 5px !important;
+    display: inline-block !important;
+    vertical-align: top;
+}
+
+/* Styles for images within FooGallery items */
+.post-content-entry .foogallery img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 6px !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+}
+
+/* Sidebar Toggle Button for single post pages */
+.sidebar-toggle-button {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 8vw; /* Responsive width */
+    height: auto;
+    max-width: 120px;
+    object-fit: contain;
+    cursor: pointer;
+    z-index: 1003;
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width:768px){
+    .post-content-entry{
+        margin-top:0;
+        padding-top:100px; /* Adjust padding for mobile fixed elements */
+    }
+}

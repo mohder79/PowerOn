@@ -1,0 +1,31 @@
+mohder-theme/
+├── style.css             (فایل اصلی استایل و اطلاعات قالب)
+├── functions.php         (برای ثبت استایل‌ها، اسکریپت‌ها و قابلیت‌های قالب)
+├── header.php            (قسمت سربرگ وب‌سایت)
+├── footer.php            (قسمت پابرگ وب‌سایت)
+├── front-page.php        (صفحه اصلی قالب)
+├── template-telegram-blog.php (قالب اختصاصی برای صفحه وبلاگ)
+├── single.php            (قالب نمایش تک نوشته - جایگزین mohder-single-post.php)
+└── assets/               (پوشه‌ای برای سازماندهی منابع)
+    ├── css/
+    │   └── custom-blog.css  (استایل‌های اختصاصی وبلاگ)
+    │   └── custom-single.css (استایل‌های اختصاصی تک نوشته)
+    ├── js/
+    │   ├── front-page.js   (اسکریپت‌های مربوط به صفحه اصلی)
+    │   ├── blog.js         (اسکریپت‌های مربوط به وبلاگ)
+    │   └── single-post.js  (اسکریپت‌های مربوط به تک نوشته)
+    └── images/
+        ├── on.png
+        ├── off.png
+        ├── power-on.mp3
+        ├── power-off.mp3
+        ├── noise.mp3
+        ├── click-on.mp3
+        ├── click-off.mp3
+        ├── faradast-energy-falat-logo.png
+        ├── independent-team-logo.png
+        ├── khuzestan-steel-logo.png
+        ├── telegram.png
+        ├── linkedin.png
+        ├── instagram.png
+        └── github.png
